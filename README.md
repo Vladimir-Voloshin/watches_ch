@@ -1,68 +1,54 @@
-Symfony Standard Edition
-========================
+Task description
+=================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+For your task, assume that watches have following properties:
+Brand - one from the list: Rolex, A. Lange & Söhne, IWC, Breitling
+Model - this is a free text entry, not longer than 64 symbols
+Case site - mm
+Case material - one from the list: steel, titan, ceramic
+Bracelet - free entry
+Year - year
+Functions - multiple or none from the list: chronograph, date, small second, moonphase, day date,
+perpetual calendar
+Price - in Euro
+SKU - uniquely identifies every watch, alphanumeric with no fixed length
+Condition - one from the list: new, aaa, aa, a, vintage
+Images - a list of urls
+Slugified url - is computed automatically like this: [brand]-[model]-[sku]
+use the best practices to make an url which is correct and easy to read
+Using your REST interface it should be possible to:
+Get a list of watches
+Get a watch by SKU
+Create a new watch
+Update watch
+Delete watch
+To make it a little more challenging let’s add some rules, which you should validate:
+A vintage watch cannot cost more than 50000 Euro
+A watch which is older than 20 years can only be vintage or aaa
+A new watch cannot be older than 4 years
+SKU should be unique
+A watch should have at least one image, and at most six of them
 
-What's inside?
---------------
+Comments
+=================
 
-The Symfony Standard Edition is configured with the following defaults:
+It should take you no more 
 
-  * An AppBundle you can use to start coding;
+than 2-3 hours.
 
-  * Twig as the only configured template engine;
+As we are in the watch business, your task is to implement a simple REST interface, which 
 
-  * Doctrine ORM/DBAL;
+provides CRUD functions for individual watches. 
 
-  * Swiftmailer;
+You can use any PHP framework and PHP libraries you want, but please do not use a library, 
 
-  * Annotations enabled for everything.
+which does all the CRUD via configuration - we want to see some code :)
 
-It comes pre-configured with the following bundles:
+Feel free to use any DB you feel suits best for the task: MySQL, NoSQL, text files, etc.
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+It would be nice if we could execute your code in vagrant provisioned machine or docker container.
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+It’s up to you to design the URL structure for the REST interface.
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.0/book/installation.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.0/book/doctrine.html
-[8]:  https://symfony.com/doc/3.0/book/templating.html
-[9]:  https://symfony.com/doc/3.0/book/security.html
-[10]: https://symfony.com/doc/3.0/cookbook/email.html
-[11]: https://symfony.com/doc/3.0/cookbook/logging/monolog.html
-[13]: https://symfony.com/doc/3.0/bundles/SensioGeneratorBundle/index.html
+To gain extra points, add unit tests to test the business logic
