@@ -2,7 +2,7 @@ Task description
 =================
 
 
-For your task, assume that watches have following properties:<br />
+** For your task, assume that watches have following properties: **<br />
 Brand - one from the list: Rolex, A. Lange & Söhne, IWC, Breitling<br />
 Model - this is a free text entry, not longer than 64 symbols<br />
 Case site - mm<br />
@@ -17,13 +17,13 @@ Condition - one from the list: new, aaa, aa, a, vintage<br />
 Images - a list of urls<br />
 Slugified url - is computed automatically like this: [brand]-[model]-[sku]
 use the best practices to make an url which is correct and easy to read<br />
-Using your REST interface it should be possible to:<br />
+** Using your REST interface it should be possible to: **<br />
 Get a list of watches<br />
 Get a watch by SKU<br />
 Create a new watch<br />
 Update watch<br />
 Delete watch<br />
-To make it a little more challenging let’s add some rules, which you should validate:<br />
+** To make it a little more challenging let’s add some rules, which you should validate: **<br />
 A vintage watch cannot cost more than 50000 Euro<br />
 A watch which is older than 20 years can only be vintage or aaa<br />
 A new watch cannot be older than 4 years<br />
