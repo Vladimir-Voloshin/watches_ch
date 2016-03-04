@@ -49,12 +49,12 @@ class Watch extends BaseEntity
     private $created;
 
     /**
-     * @var Brand
+     * @var \WatchChallengeBundle\Entity\Brand
      */
     private $brand;
 
     /**
-     * @var CaseMaterial
+     * @var \WatchChallengeBundle\Entity\CaseMaterial
      */
     private $caseMaterial;
 
@@ -62,6 +62,11 @@ class Watch extends BaseEntity
      * @var string
      */
     private $sku;
+
+    /**
+     * @var \WatchChallengeBundle\Entity\Condition
+     */
+    private $condition;
 
     /**
      * @var WatchFunction[]|\Doctrine\Common\Collections\ArrayCollection
@@ -98,6 +103,29 @@ class Watch extends BaseEntity
     public function setCaseMaterial(CaseMaterial $caseMaterial = null)
     {
         $this->caseMaterial = $caseMaterial;
+
+        return $this;
+    }
+
+    /**
+     * Get condition
+     *
+     * @return \WatchChallengeBundle\Entity\Condition
+     */
+    public function getCondition()
+    {
+        return $this->condition;
+    }
+
+    /**
+     * Set condition
+     *
+     * @param \WatchChallengeBundle\Entity\Condition $condition
+     * @return Watch
+     */
+    public function setCondition(Condition $condition = null)
+    {
+        $this->condition = $condition;
 
         return $this;
     }

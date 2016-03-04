@@ -11,7 +11,7 @@ Year - year<br />
 Functions - multiple or none from the list: chronograph, date, small second, moonphase, day date,
 perpetual calendar<br />
 Price - in Euro<br />
-SKU - uniquely identifies every watch, alphanumeric with no fixed length
+SKU - uniquely identifies every watch, alphanumeric with no fixed length<br />
 Condition - one from the list: new, aaa, aa, a, vintage<br />
 Images - a list of urls<br />
 Slugified url - is computed automatically like this: [brand]-[model]-[sku]

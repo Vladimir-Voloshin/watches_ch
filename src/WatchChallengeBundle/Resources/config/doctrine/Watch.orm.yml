@@ -46,6 +46,12 @@ WatchChallengeBundle\Entity\Watch:
                 name: case_material_id
                 referencedColumnName: id
                 nullable: false
+        condition:
+            targetEntity: WatchChallengeBundle\Entity\WatchCondition
+            joinColumn:
+                name: condition_id
+                referencedColumnName: id
+                nullable: false
     manyToMany:
         watchFunctions:
             targetEntity: WatchChallengeBundle\Entity\WatchFunction
