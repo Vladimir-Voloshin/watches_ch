@@ -1,0 +1,62 @@
+WatchChallengeBundle\Entity\Watch:
+    type: entity
+    table: null
+    repositoryClass: WatchChallengeBundle\Repository\WatchRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        model:
+            type: string
+            length: '64'
+        brandId:
+            type: integer
+            nullable: true
+            column: brand_id
+        caseSite:
+            type: integer
+            nullable: true
+            column: case_site
+        caseMaterialId:
+            type: integer
+            nullable: true
+            column: case_material_id
+        bracelet:
+            type: string
+            length: 255
+            nullable: true
+        updated:
+            type: datetime
+            nullable: true
+        created:
+            type: datetime
+    manyToOne:
+        brand:
+            targetEntity: WatchChallengeBundle\Entity\Brand
+            joinColumn:
+                name: brand_id
+                referencedColumnName: id
+                nullable: false
+        caseMaterial:
+            targetEntity: WatchChallengeBundle\Entity\CaseMaterial
+            joinColumn:
+                name: case_material_id
+                referencedColumnName: id
+                nullable: false
+    manyToMany:
+        watchFunctions:
+            targetEntity: WatchChallengeBundle\Entity\WatchFunction
+            joinTable:
+                name: crossWatchesWatchFunctions
+                joinColumns:
+                    watch_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    watch_function_id:
+                        referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue]
+        preUpdate:  [setUpdatedValue]

@@ -1,0 +1,23 @@
+WatchChallengeBundle\Entity\Image:
+    type: entity
+    table: null
+    repositoryClass: WatchChallengeBundle\Repository\ImageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        path:
+            type: string
+            length: 255
+            unique: true
+        updated:
+            type: datetime
+            nullable: true
+        created:
+            type: datetime
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue]
+        preUpdate:  [setUpdatedValue]
