@@ -2,6 +2,7 @@
 
 namespace WatchChallengeBundle\Repository;
 
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 /**
  * WatchRepository
  *
@@ -10,4 +11,16 @@ namespace WatchChallengeBundle\Repository;
  */
 class WatchRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getByBrandModelSKU($brand, $model, $sku){
+        $query = $this->createQueryBuilder('w');
+        $query->innerJoin('w.brand', 'b');
+        $query->where('b.name = :brand');
+        $query->andWhere('w.model = :model');
+        $query->andWhere('w.sku = :sku');
+        $query->setParameter('model', $model);
+        $query->setParameter('brand', $brand);
+        $query->setParameter('sku', $sku);
+
+        return $query->getQuery()->getOneOrNullResult();
+    }
 }

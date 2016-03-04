@@ -438,5 +438,23 @@ class Watch extends BaseEntity
     {
         $this->watchImages->removeElement($watchImage);
     }
+
+    public function toJson(){
+        $functions = array();
+        if ($this->watchFunctions->count() > 0) {
+            $functions = $this->watchFunctions->map(function($function) {
+                return $function->getName();
+            })->toArray();
+        }
+
+        return array(
+            'name' => $this->model,
+            'sku'  => $this->sku,
+            'brand' => $this->brand->getName(),
+            'case site' => $this->caseSite,
+            'caseMaterial' => $this->caseMaterial->getName(),
+            'functions'    => $functions
+        );
+    }
 }
 

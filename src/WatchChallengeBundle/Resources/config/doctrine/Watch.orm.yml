@@ -28,6 +28,10 @@ WatchChallengeBundle\Entity\Watch:
             type: string
             length: 255
             nullable: true
+        sku:
+            type: string
+            length: 255
+            nullable: true
         updated:
             type: datetime
             nullable: true
