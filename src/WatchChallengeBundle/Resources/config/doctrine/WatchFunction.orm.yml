@@ -1,6 +1,6 @@
 WatchChallengeBundle\Entity\WatchFunction:
     type: entity
-    table: null
+    table: watch_functions
     repositoryClass: WatchChallengeBundle\Repository\WatchFunctionRepository
     id:
         id:

@@ -1,6 +1,6 @@
 WatchChallengeBundle\Entity\Brand:
     type: entity
-    table: null
+    table: brands
     repositoryClass: WatchChallengeBundle\Repository\BrandRepository
     id:
         id:

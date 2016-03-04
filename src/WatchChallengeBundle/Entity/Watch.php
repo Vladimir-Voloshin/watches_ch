@@ -68,11 +68,15 @@ class Watch extends BaseEntity
      */
     private $watchFunctions;
 
-
+    /**
+     * @var WatchImage[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    private $watchImages;
 
     public function __construct()
     {
         $this->watchFunctions = new ArrayCollection();
+        $this->watchImages    = new ArrayCollection();
     }
 
     /**
@@ -323,10 +327,6 @@ class Watch extends BaseEntity
         return $this->created;
     }
 
-
-
-
-
     /**
      * @return ArrayCollection|WatchFunction[]
      */
@@ -354,7 +354,7 @@ class Watch extends BaseEntity
      */
     public function addWatchFunctions(\WatchChallengeBundle\Entity\WatchFunction $watchFunction)
     {
-        $this->recipeIngredients[] = $watchFunction;
+        $this->watchFunctions[] = $watchFunction;
 
         return $this;
     }
@@ -366,7 +366,49 @@ class Watch extends BaseEntity
      */
     public function removeWatchFunctions(\WatchChallengeBundle\Entity\WatchFunction $watchFunction)
     {
-        $this->recipeIngredients->removeElement($watchFunction);
+        $this->watchFunctions->removeElement($watchFunction);
+    }
+
+    /**
+     * @return ArrayCollection|WatchImage[]
+     */
+    public function getWatchImages()
+    {
+        return $this->watchImages;
+    }
+
+    /**
+     * @param ArrayCollection|WatchImage[] $watchImages
+     * @return Watch
+     */
+    public function setWatchImages($watchImages)
+    {
+        $this->watchImages = $watchImages;
+
+        return $this;
+    }
+
+    /**
+     * Add watch image
+     *
+     * @param \WatchChallengeBundle\Entity\WatchImage $watchImage
+     * @return Watch
+     */
+    public function addWatchImages(\WatchChallengeBundle\Entity\WatchImage $watchImage)
+    {
+        $this->watchImages[] = $watchImage;
+
+        return $this;
+    }
+
+    /**
+     * Remove watch image
+     *
+     * @param \WatchChallengeBundle\Entity\WatchImage $watchImage
+     */
+    public function removeWatchImages(\WatchChallengeBundle\Entity\WatchImage $watchImage)
+    {
+        $this->watchImages->removeElement($watchImage);
     }
 }
 

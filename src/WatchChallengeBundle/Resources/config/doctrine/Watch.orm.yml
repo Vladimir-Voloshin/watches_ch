@@ -1,6 +1,6 @@
 WatchChallengeBundle\Entity\Watch:
     type: entity
-    table: null
+    table: watches
     repositoryClass: WatchChallengeBundle\Repository\WatchRepository
     id:
         id:
@@ -56,6 +56,16 @@ WatchChallengeBundle\Entity\Watch:
                         referencedColumnName: id
                 inverseJoinColumns:
                     watch_function_id:
+                        referencedColumnName: id
+        watchImages:
+            targetEntity: WatchChallengeBundle\Entity\WatchImage
+            joinTable:
+                name: crossWatchesWatchImage
+                joinColumns:
+                    watch_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    watch_image_id:
                         referencedColumnName: id
     lifecycleCallbacks:
         prePersist: [setCreatedValue]

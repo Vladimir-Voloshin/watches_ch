@@ -6,7 +6,7 @@ use WatchChallengeBundle\Entity\BaseEntity;
 /**
  * Image
  */
-class Image extends BaseEntity
+class WatchImage extends BaseEntity
 {
     /**
      * @var int

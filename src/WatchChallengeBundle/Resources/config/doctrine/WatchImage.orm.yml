@@ -1,7 +1,7 @@
-WatchChallengeBundle\Entity\Image:
+WatchChallengeBundle\Entity\WatchImage:
     type: entity
-    table: null
-    repositoryClass: WatchChallengeBundle\Repository\ImageRepository
+    table: watch_images
+    repositoryClass: WatchChallengeBundle\Repository\WatchRepository
     id:
         id:
             type: integer

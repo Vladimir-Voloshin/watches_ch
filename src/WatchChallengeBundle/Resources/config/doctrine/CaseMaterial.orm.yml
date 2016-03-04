@@ -1,6 +1,6 @@
 WatchChallengeBundle\Entity\CaseMaterial:
     type: entity
-    table: null
+    table: case_materials
     repositoryClass: WatchChallengeBundle\Repository\CaseMaterialRepository
     id:
         id:
