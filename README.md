@@ -31,7 +31,7 @@ SKU should be unique
 A watch should have at least one image, and at most six of them
 
 Comments
-=================
+----------------
 
 It should take you no more 
 

@@ -1,3 +1,7 @@
+watch_challenge:
+    resource: "@WatchChallengeBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
