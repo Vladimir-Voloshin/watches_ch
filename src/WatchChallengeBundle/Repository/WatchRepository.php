@@ -2,6 +2,7 @@
 
 namespace WatchChallengeBundle\Repository;
 
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 /**
  * WatchRepository
@@ -15,6 +16,7 @@ class WatchRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->createQueryBuilder('w');
         $query->innerJoin('w.brand', 'b');
         $query->where('b.name = :brand');
+        //can really skip searching by brand and model if SKU unique value
         $query->andWhere('w.model = :model');
         $query->andWhere('w.sku = :sku');
         $query->setParameter('model', $model);
@@ -22,5 +24,34 @@ class WatchRepository extends \Doctrine\ORM\EntityRepository
         $query->setParameter('sku', $sku);
 
         return $query->getQuery()->getOneOrNullResult();
+    }
+
+    public function _NativeSQLgetByBrandModelSKU($brand, $model, $sku){
+        $rsm = new ResultSetMapping;
+        $rsm->addEntityResult('WatchChallengeBundle\Entity\Watch', 'w1');
+        $rsm->addFieldResult('w1', 'id', 'id');
+        $rsm->addFieldResult('w1', 'case_site', 'caseSite');
+        $rsm->addFieldResult('w1', 'model', 'model');
+        $rsm->addFieldResult('w1', 'sku', 'sku');
+        $rsm->addJoinedEntityResult('WatchChallengeBundle\Entity\Brand' , 'b1', 'w1', 'brand');
+        $rsm->addFieldResult('b1', 'brand_id', 'id');
+        $rsm->addFieldResult('b1', 'name', 'name');
+        $rsm->addFieldResult('b1', 'created', 'created');
+        $rsm->addFieldResult('b1', 'updated', 'updated');
+        $rsm->addJoinedEntityResult('WatchChallengeBundle\Entity\CaseMaterial' , 'cm1', 'w1', 'caseMaterial');
+        $rsm->addFieldResult('cm1', 'case_material_id', 'id');
+        $rsm->addFieldResult('cm1', 'name', 'name');
+        $rsm->addJoinedEntityResult('WatchChallengeBundle\Entity\WatchCondition' , 'wc1', 'w1', 'condition');
+        $rsm->addFieldResult('wc1', 'condition_id', 'id');
+        $rsm->addFieldResult('wc1', 'name', 'name1');
+
+        $sql = "SELECT * FROM watches as w1
+                  INNER JOIN brands AS b1 ON b1.id = w1.brand_id
+                  INNER JOIN case_materials AS cs1 ON cs1.id = w1.case_material_id
+                  INNER JOIN watch_conditions AS wc1 ON wc1.id = w1.condition_id
+                  WHERE b1.name='{$brand}' AND w1.sku='{$sku}' AND w1.model='{$model}'";
+        $query = $this->_em->createNativeQuery($sql, $rsm);
+        $items = $query->getResult();
+        return $items[0];
     }
 }

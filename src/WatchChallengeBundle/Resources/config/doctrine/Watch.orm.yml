@@ -12,10 +12,6 @@ WatchChallengeBundle\Entity\Watch:
         model:
             type: string
             length: '64'
-        brandId:
-            type: integer
-            nullable: true
-            column: brand_id
         caseSite:
             type: integer
             nullable: true

@@ -12,7 +12,8 @@ class WatchController extends Controller
     {
         /** @var \WatchChallengeBundle\Repository\WatchRepository $repo */
         $watchRepository = $this->getDoctrine()->getRepository('WatchChallengeBundle:Watch');
-        $entity = $watchRepository->getByBrandModelSKU($brand, $model, $sku);
+//        $entity = $watchRepository->_NativeSQLgetByBrandModelSKU($brand, $model, $sku);
+        $entity = $watchRepository->_NativeSQLgetByBrandModelSKU($brand, $model, $sku);
         return new JsonResponse(array('items' => $entity->toJson()));
     }
 }

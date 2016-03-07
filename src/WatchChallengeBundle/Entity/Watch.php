@@ -3,6 +3,7 @@
 namespace WatchChallengeBundle\Entity;
 
 use WatchChallengeBundle\Entity\BaseEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Watch
  */
@@ -17,11 +18,6 @@ class Watch extends BaseEntity
      * @var string
      */
     private $model;
-
-    /**
-     * @var int
-     */
-    private $brandId;
 
     /**
      * @var int
@@ -209,30 +205,6 @@ class Watch extends BaseEntity
     public function getModel()
     {
         return $this->model;
-    }
-
-    /**
-     * Set brandId
-     *
-     * @param integer $brandId
-     *
-     * @return Watch
-     */
-    public function setBrandId($brandId)
-    {
-        $this->brandId = $brandId;
-
-        return $this;
-    }
-
-    /**
-     * Get brandId
-     *
-     * @return int
-     */
-    public function getBrandId()
-    {
-        return $this->brandId;
     }
 
     /**
@@ -448,11 +420,12 @@ class Watch extends BaseEntity
         }
 
         return array(
-            'name' => $this->model,
+            'model' => $this->model,
             'sku'  => $this->sku,
             'brand' => $this->brand->getName(),
             'case site' => $this->caseSite,
             'caseMaterial' => $this->caseMaterial->getName(),
+            'condition' => $this->condition->getName(),
             'functions'    => $functions
         );
     }
