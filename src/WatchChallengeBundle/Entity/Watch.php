@@ -415,7 +415,7 @@ class Watch extends BaseEntity
         $functions = array();
         if ($this->watchFunctions->count() > 0) {
             $functions = $this->watchFunctions->map(function($function) {
-                return $function->getName();
+                return $function->getFunctionName();
             })->toArray();
         }
 
@@ -424,8 +424,8 @@ class Watch extends BaseEntity
             'sku'  => $this->sku,
             'brand' => $this->brand->getName(),
             'case site' => $this->caseSite,
-            'caseMaterial' => $this->caseMaterial->getName(),
-            'condition' => $this->condition->getName(),
+            'caseMaterial' => $this->caseMaterial->getMaterialName(),
+            'condition' => $this->condition->getConditionName(),
             'functions'    => $functions
         );
     }

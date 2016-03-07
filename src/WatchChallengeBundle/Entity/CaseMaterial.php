@@ -16,7 +16,7 @@ class CaseMaterial extends BaseEntity
     /**
      * @var string
      */
-    private $name;
+    private $materialName;
 
     /**
      * @var \DateTime
@@ -41,13 +41,13 @@ class CaseMaterial extends BaseEntity
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $materialName
      *
      * @return CaseMaterial
      */
-    public function setName($name)
+    public function setMaterialName($materialName)
     {
-        $this->name = $name;
+        $this->materialName = $materialName;
 
         return $this;
     }
@@ -57,9 +57,9 @@ class CaseMaterial extends BaseEntity
      *
      * @return string
      */
-    public function getName()
+    public function getMaterialName()
     {
-        return $this->name;
+        return $this->materialName;
     }
 
     /**

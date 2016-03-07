@@ -16,7 +16,7 @@ class WatchFunction extends BaseEntity
     /**
      * @var string
      */
-    private $name;
+    private $functionName;
 
     /**
      * @var \DateTime
@@ -42,13 +42,13 @@ class WatchFunction extends BaseEntity
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $functionName
      *
      * @return WatchFunction
      */
-    public function setName($name)
+    public function setFunctionName($functionName)
     {
-        $this->name = $name;
+        $this->functionName = $functionName;
 
         return $this;
     }
@@ -58,9 +58,9 @@ class WatchFunction extends BaseEntity
      *
      * @return string
      */
-    public function getName()
+    public function getFunctionName()
     {
-        return $this->name;
+        return $this->functionName;
     }
 
     /**

@@ -9,7 +9,7 @@ WatchChallengeBundle\Entity\WatchFunction:
             generator:
                 strategy: AUTO
     fields:
-        name:
+        functionName:
             type: string
             length: 255
             unique: true

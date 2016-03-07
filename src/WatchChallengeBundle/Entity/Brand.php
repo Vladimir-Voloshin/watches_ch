@@ -16,7 +16,7 @@ class Brand extends BaseEntity
     /**
      * @var string
      */
-    private $name;
+    private $brandName;
 
     /**
      * @var \DateTime
@@ -41,13 +41,13 @@ class Brand extends BaseEntity
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $brandName
      *
      * @return Brand
      */
-    public function setName($name)
+    public function setName($brandName)
     {
-        $this->name = $name;
+        $this->brandName = $brandName;
 
         return $this;
     }
@@ -59,7 +59,7 @@ class Brand extends BaseEntity
      */
     public function getName()
     {
-        return $this->name;
+        return $this->brandName;
     }
 
     /**

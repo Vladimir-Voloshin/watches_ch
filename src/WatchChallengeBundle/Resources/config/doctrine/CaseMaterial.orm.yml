@@ -9,7 +9,7 @@ WatchChallengeBundle\Entity\CaseMaterial:
             generator:
                 strategy: AUTO
     fields:
-        name:
+        materialName:
             type: string
             length: '255'
             unique: true

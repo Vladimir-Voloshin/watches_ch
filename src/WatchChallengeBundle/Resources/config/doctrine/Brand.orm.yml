@@ -9,7 +9,7 @@ WatchChallengeBundle\Entity\Brand:
             generator:
                 strategy: AUTO
     fields:
-        name:
+        brandName:
             type: string
             length: 255
             unique: true

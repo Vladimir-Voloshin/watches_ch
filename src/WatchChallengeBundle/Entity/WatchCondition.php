@@ -16,7 +16,7 @@ class WatchCondition extends BaseEntity
     /**
      * @var string
      */
-    private $name;
+    private $conditionName;
 
     /**
      * @var \DateTime
@@ -41,13 +41,13 @@ class WatchCondition extends BaseEntity
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $conditionName
      *
      * @return WatchCondition
      */
-    public function setName($name)
+    public function setConditionName($conditionName)
     {
-        $this->name = $name;
+        $this->conditionName = $conditionName;
 
         return $this;
     }
@@ -57,9 +57,9 @@ class WatchCondition extends BaseEntity
      *
      * @return string
      */
-    public function getName()
+    public function getConditionName()
     {
-        return $this->name;
+        return $this->conditionName;
     }
 
     /**
