@@ -16,14 +16,20 @@ WatchChallengeBundle\Entity\Watch:
             type: integer
             nullable: true
             column: case_site
-        caseMaterialId:
-            type: integer
-            nullable: true
-            column: case_material_id
         bracelet:
             type: string
             length: 255
             nullable: true
+        slug:
+            type: string
+            length: 128
+            gedmo:
+                slug:
+                    separator: -
+                    style: camel
+                    fields:
+                        - model
+                        - sku
         sku:
             type: string
             length: 255
@@ -33,6 +39,10 @@ WatchChallengeBundle\Entity\Watch:
             nullable: true
         created:
             type: datetime
+    oneToMany:
+        watchImages:
+            targetEntity: WatchChallengeBundle\Entity\WatchImage
+            mappedBy: watch
     manyToOne:
         brand:
             targetEntity: WatchChallengeBundle\Entity\Brand
@@ -45,13 +55,13 @@ WatchChallengeBundle\Entity\Watch:
             joinColumn:
                 name: case_material_id
                 referencedColumnName: id
-                nullable: false
+                nullable: true
         condition:
             targetEntity: WatchChallengeBundle\Entity\WatchCondition
             joinColumn:
                 name: condition_id
                 referencedColumnName: id
-                nullable: false
+                nullable: true
     manyToMany:
         watchFunctions:
             targetEntity: WatchChallengeBundle\Entity\WatchFunction
@@ -62,16 +72,6 @@ WatchChallengeBundle\Entity\Watch:
                         referencedColumnName: id
                 inverseJoinColumns:
                     watch_function_id:
-                        referencedColumnName: id
-        watchImages:
-            targetEntity: WatchChallengeBundle\Entity\WatchImage
-            joinTable:
-                name: crossWatchesWatchImage
-                joinColumns:
-                    watch_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    watch_image_id:
                         referencedColumnName: id
     lifecycleCallbacks:
         prePersist: [setCreatedValue]

@@ -4,11 +4,18 @@ namespace WatchChallengeBundle\Entity;
 
 use WatchChallengeBundle\Entity\BaseEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
 /**
  * Watch
  */
 class Watch extends BaseEntity
 {
+    /**
+     * @var string
+     */
+    private $slug;
+
     /**
      * @var int
      */
@@ -23,11 +30,6 @@ class Watch extends BaseEntity
      * @var int
      */
     private $caseSite;
-
-    /**
-     * @var int
-     */
-    private $caseMaterialId;
 
     /**
      * @var string
@@ -106,7 +108,7 @@ class Watch extends BaseEntity
     /**
      * Get condition
      *
-     * @return \WatchChallengeBundle\Entity\Condition
+     * @return \WatchChallengeBundle\Entity\WatchCondition
      */
     public function getCondition()
     {
@@ -116,10 +118,10 @@ class Watch extends BaseEntity
     /**
      * Set condition
      *
-     * @param \WatchChallengeBundle\Entity\Condition $condition
+     * @param \WatchChallengeBundle\Entity\WatchCondition $condition
      * @return Watch
      */
-    public function setCondition(Condition $condition = null)
+    public function setCondition(WatchCondition $condition = null)
     {
         $this->condition = $condition;
 
@@ -208,6 +210,30 @@ class Watch extends BaseEntity
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Watch
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set caseSite
      *
      * @param integer $caseSite
@@ -229,30 +255,6 @@ class Watch extends BaseEntity
     public function getCaseSite()
     {
         return $this->caseSite;
-    }
-
-    /**
-     * Set caseMaterialId
-     *
-     * @param integer $caseMaterialId
-     *
-     * @return Watch
-     */
-    public function setCaseMaterialId($caseMaterialId)
-    {
-        $this->caseMaterialId = $caseMaterialId;
-
-        return $this;
-    }
-
-    /**
-     * Get caseMaterialId
-     *
-     * @return int
-     */
-    public function getCaseMaterialId()
-    {
-        return $this->caseMaterialId;
     }
 
     /**

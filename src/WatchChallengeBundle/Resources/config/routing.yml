@@ -13,3 +13,6 @@ watch_update:
 watch_delete:
     path:     /watch/delete
     defaults: { _controller: WatchChallengeBundle:Watch:delete }
+watch_list:
+    path:     /watch/list
+    defaults: { _controller: WatchChallengeBundle:Watch:getAll }
