@@ -61,7 +61,6 @@ class WatchController extends Controller
         $watch->setCaseSite($data['case_site']);
         $watch->setSku($data['sku']);
         $watch->setBracelet($data['bracelet']);
-        $watch->setSlug($data['model'] . '-' .$data['sku']);
 
         $em = $this->getDoctrine()->getEntityManager();
         $em->persist($watch);

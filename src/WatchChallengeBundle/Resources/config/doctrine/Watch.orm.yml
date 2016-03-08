@@ -20,16 +20,23 @@ WatchChallengeBundle\Entity\Watch:
             type: string
             length: 255
             nullable: true
+#            https://github.com/Atlantic18/DoctrineExtensions/blob/master/tests/Gedmo/Mapping/Driver/Yaml/Mapping.Fixture.Yaml.Category.dcm.yml for samples
         slug:
             type: string
             length: 128
             gedmo:
                 slug:
                     separator: -
-                    style: camel
+                    style: lower
+                    updatable: true
                     fields:
                         - model
                         - sku
+                    handlers:
+                        Gedmo\Sluggable\Handler\RelativeSlugHandler:
+                            relationField: brand
+                            relationSlugField: brandName
+                            separator: -
         sku:
             type: string
             length: 255

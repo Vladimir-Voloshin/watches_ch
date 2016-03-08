@@ -210,20 +210,6 @@ class Watch extends BaseEntity
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Watch
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
      * Get slug
      *
      * @return string
