@@ -42,6 +42,10 @@ WatchChallengeBundle\Entity\Watch:
     oneToMany:
         watchImages:
             targetEntity: WatchChallengeBundle\Entity\WatchImage
+            cascade: ["persist","remove"]
+            joinColumn:
+                name: id
+                referencedColumnName: watch_id
             mappedBy: watch
     manyToOne:
         brand:

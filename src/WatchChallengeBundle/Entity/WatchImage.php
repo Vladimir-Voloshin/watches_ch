@@ -28,6 +28,12 @@ class WatchImage extends BaseEntity
      */
     private $created;
 
+    /**
+     * @var \WatchChallengeBundle\Entity\Watch
+     */
+    private $watch;
+
+    const BaseUrl = 'img/watch/';
 
     /**
      * Get id
@@ -40,11 +46,34 @@ class WatchImage extends BaseEntity
     }
 
     /**
+     * Get watch
+     *
+     * @return Watch
+     */
+    public function getWatch()
+    {
+        return $this->watch;
+    }
+
+    /**
+     * Set watch
+     *
+     * @param \WatchChallengeBundle\Entity\Watch $watch
+     * @return WatchImage
+     */
+    public function setWatch(Watch $watch = null)
+    {
+        $this->watch = $watch;
+
+        return $this;
+    }
+
+    /**
      * Set path
      *
      * @param string $path
      *
-     * @return Image
+     * @return WatchImage
      */
     public function setPath($path)
     {
@@ -68,7 +97,7 @@ class WatchImage extends BaseEntity
      *
      * @param \DateTime $updated
      *
-     * @return Image
+     * @return WatchImage
      */
     public function setUpdated($updated)
     {
@@ -92,7 +121,7 @@ class WatchImage extends BaseEntity
      *
      * @param \DateTime $created
      *
-     * @return Image
+     * @return WatchImage
      */
     public function setCreated($created)
     {

@@ -18,6 +18,11 @@ WatchChallengeBundle\Entity\WatchImage:
             nullable: true
         created:
             type: datetime
+    manyToOne:
+        watch:
+            targetEntity: WatchChallengeBundle\Entity\Watch
+            inversedBy: watchImages
+            nullable: false
     lifecycleCallbacks:
         prePersist: [setCreatedValue]
         preUpdate:  [setUpdatedValue]

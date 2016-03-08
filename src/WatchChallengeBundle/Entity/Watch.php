@@ -396,7 +396,7 @@ class Watch extends BaseEntity
      * @param \WatchChallengeBundle\Entity\WatchImage $watchImage
      * @return Watch
      */
-    public function addWatchImages(\WatchChallengeBundle\Entity\WatchImage $watchImage)
+    public function addWatchImage(\WatchChallengeBundle\Entity\WatchImage $watchImage)
     {
         $this->watchImages[] = $watchImage;
 
@@ -408,7 +408,7 @@ class Watch extends BaseEntity
      *
      * @param \WatchChallengeBundle\Entity\WatchImage $watchImage
      */
-    public function removeWatchImages(\WatchChallengeBundle\Entity\WatchImage $watchImage)
+    public function removeWatchImage(\WatchChallengeBundle\Entity\WatchImage $watchImage)
     {
         $this->watchImages->removeElement($watchImage);
     }
@@ -422,12 +422,13 @@ class Watch extends BaseEntity
         }
 
         return array(
+            'id' => $this->id,
             'model' => $this->model,
             'sku'  => $this->sku,
-            'brand' => $this->brand->getName(),
+            'brand' => empty($this->brand)?null:$this->brand->getName(),
             'case site' => $this->caseSite,
-            'caseMaterial' => $this->caseMaterial->getMaterialName(),
-            'condition' => $this->condition->getConditionName(),
+            'caseMaterial' => empty($this->caseMaterial)?null:$this->caseMaterial->getMaterialName(),
+            'condition' => empty($this->condition)?null:$this->condition->getConditionName(),
             'functions'    => $functions
         );
     }

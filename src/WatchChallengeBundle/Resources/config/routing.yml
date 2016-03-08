@@ -11,7 +11,7 @@ watch_update:
     path:     /watch/update
     defaults: { _controller: WatchChallengeBundle:Watch:update }
 watch_delete:
-    path:     /watch/delete
+    path:     /watch/delete/{sku}
     defaults: { _controller: WatchChallengeBundle:Watch:delete }
 watch_list:
     path:     /watch/list

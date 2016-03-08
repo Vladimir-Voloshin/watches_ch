@@ -73,16 +73,13 @@ class WatchController extends Controller
             }
             $image = new WatchImage();
             $uniqid = uniqid('', true);
-            $watch->addWatchImages($image);
+            $watch->addWatchImage($image);
+            $image->setWatch($watch);
             $image->setPath($image::BaseUrl . $uniqid . $file->getClientOriginalName());
-
             $file->move($image::BaseUrl, $uniqid . $file->getClientOriginalName());
             $em->persist($image);
-            $em->persist($watch);
             $em->flush();
         }
-
-
         return new JsonResponse(array(
             'watch' => $watch->toJson()
         ));
@@ -92,7 +89,10 @@ class WatchController extends Controller
     {
         /** @var \WatchChallengeBundle\Repository\WatchRepository $watchRepository */
         $watchRepository = $this->getDoctrine()->getRepository('WatchChallengeBundle:Watch');
-        $item = $watchRepository->findBy(array('sku' => $sku));
+        $item = $watchRepository->findOneBy(array('sku' => $sku));
+        if(empty($item)){
+            throw new \Exception('Item not found');
+        }
         $em = $this->getDoctrine()->getEntityManager();
         $em->remove($item);
         $em->flush();
@@ -108,7 +108,9 @@ class WatchController extends Controller
         /** @var \WatchChallengeBundle\Repository\WatchRepository $watchRepository */
         $watchRepository = $this->getDoctrine()->getRepository('WatchChallengeBundle:Watch');
         $watch = $watchRepository->findOneBy(array('id' => $data['watch_id']));
-
+        if(empty($watch)){
+            throw new \Exception('Item not found');
+        }
 
         if (array_key_exists('brand_id', $data) && $data['brand_id']) {
             /** @var \WatchChallengeBundle\Repository\BrandRepository $brandRepo */
@@ -156,20 +158,42 @@ class WatchController extends Controller
             $watch->setModel($data['bracelet']);
         }
 
-
         $em = $this->getDoctrine()->getEntityManager();
+        $oldImages = $watch->getWatchImages();
+        if (isset($data['images']) && is_array($data['images'])) {
+            /** @var \WatchChallengeBundle\Entity\WatchImage $oldImage */
+            foreach ($oldImages as $oldImage) {
+                $exists = false;
+                foreach ($data['images'] as $imageFile) {
+                    if ($oldImage->getId() == $imageFile['id']) {
+                        $exists = true;
+                    }
+                }
+
+                if (!$exists) {
+                    $watch->removeWatchImages($oldImage);
+                    $em->remove($oldImage);
+                }
+            }
+        } else {
+            /** @var \WatchChallengeBundle\Entity\WatchImage $oldImage */
+            foreach ($oldImages as $oldImage) {
+                $watch->removeWatchImages($oldImage);
+                $em->remove($oldImage);
+            }
+            $em->flush();
+        }
+
         foreach($request->files as $file){
             if(null === $file && in_array($file->getClientMimeType(), array('image/jpeg'))){
                 continue;
             }
             $image = new WatchImage();
             $uniqid = uniqid('', true);
-            $watch->addWatchImages($image);
+            $image->setWatch($watch);
             $image->setPath($image::BaseUrl . $uniqid . $file->getClientOriginalName());
-
             $file->move($image::BaseUrl, $uniqid . $file->getClientOriginalName());
             $em->persist($image);
-            $em->persist($watch);
             $em->flush();
         }
 
